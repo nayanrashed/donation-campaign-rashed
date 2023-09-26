@@ -5,11 +5,13 @@ import Donations from "../../components/Donations/Donations";
 
 const Home = () => {
     const donations = useLoaderData();
-    console.log(donations);
+    
     return (
         <div>
             <Banner></Banner>
+            <div className="">
             <Donations donations={donations}></Donations>
+            </div>
         </div>
     );
 };

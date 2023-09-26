@@ -1,3 +1,6 @@
+import swal from "sweetalert";
+
+
 const DonationCard = ({ donation }) => {
   const {
     id,
@@ -9,7 +12,7 @@ const DonationCard = ({ donation }) => {
     text_button_bg,
     description,
     price,
-  } = donation;
+  } = donation || {};
 
   const handleAddToDonationList = () => {
     const addedToDonationList = [];
@@ -18,15 +21,15 @@ const DonationCard = ({ donation }) => {
     if (!donationItems) {
       addedToDonationList.push(donation);
       localStorage.setItem("donations", JSON.stringify(addedToDonationList));
-      alert("Product Added");
+      swal("Good job!", "Donation Successful", "success");
     } else {
       const isExists = donationItems.find((donation) => donation.id == id);
       if (!isExists) {
         addedToDonationList.push(...donationItems, donation);
         localStorage.setItem("donations", JSON.stringify(addedToDonationList));
-        alert("Product Added");
+        swal("Good job!", "Donation Successful", "success");
       }else{
-        alert('Already Added')
+        swal("Already Donated")
       }
     }
   };
@@ -35,8 +38,8 @@ const DonationCard = ({ donation }) => {
     <div>
       <div className="relative">
         <img className="w-full h-[80vh]" src={picture} alt="" />
-        <div className="bg-black bg-opacity-40 py-12 pl-12 absolute bottom-0 w-full">
-          <button onClick={handleAddToDonationList} className="btn btn-primary">
+        <div className="bg-black bg-opacity-40 py-6 pl-6 lg:py-10 lg:pl-10 absolute bottom-0 w-full">
+          <button className="btn text-white border-none" style={{ backgroundColor: text_button_bg }} onClick={handleAddToDonationList} >
             Donate ${price}
           </button>
         </div>
