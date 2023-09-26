@@ -20,7 +20,7 @@ const DonationsCard = ({ donation }) => {
           <img className="w-full h-48" src={picture} alt="pictures" />
         </figure>
         <div className="">
-          <button className="text-[#0052FF] bg-[#0052ff20] text-sm font-medium px-3 rounded-sm mt-5 ml-4 ">
+          <button style={{backgroundColor:category_bg}} className="text-[#0052FF]  text-sm font-medium px-3 rounded-sm mt-5 ml-4">
             {category}
           </button>
           <h2 className="card-title text-[#0052FF] text-xl font-semibold my-5 ml-4">
