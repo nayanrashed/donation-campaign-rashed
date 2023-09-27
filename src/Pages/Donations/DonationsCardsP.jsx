@@ -30,9 +30,11 @@ const DonationsCardsP = ({ donation }) => {
           </button>
           <h1 className="text-[#0B0B0B] font-semibold text-2xl mb-2">{title}</h1>
           <p style={{color: text_button_bg }} className=" text-base font-semibold mb-6">${price}</p>
+          <Link to={`/donation/${id}`}>
           <button className="btn text-white border-none px-4 py-2 mb-6 font-semibold" style={{ backgroundColor: text_button_bg }} >
             View Details
           </button>
+          </Link>
         </div>
       </div>
     </div>

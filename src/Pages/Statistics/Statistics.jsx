@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
-import { ResponsiveContainer, PieChart, Pie, Legend } from "recharts";
+import { ResponsiveContainer, PieChart, Pie, Legend, Cell } from "recharts";
 
 const Statistics = () => {
   const donations = useLoaderData();
@@ -31,10 +31,12 @@ const Statistics = () => {
       { name: "Remaining Donation", value: 67 },
       { name: "Your Donated", value: 33 },
     ];
+    const COLORS = ["#0cc93f", "#fe0000"];
 
     useEffect(() => {
       const donationItems = JSON.parse(localStorage.getItem("donations"));
-      const donatedItems = donationItems.length;
+      if(donationItems){
+        const donatedItems = donationItems.length;
       const totalDonationItems = donations.length;
       const donatedItemsInPercent = (
         (donatedItems / totalDonationItems) *
@@ -43,21 +45,34 @@ const Statistics = () => {
       const remainingDonationPercent = (100 - donatedItemsInPercent).toFixed(2);
 
       setDonatedItemsInPercent(donatedItemsInPercent);
-      setRemainingDonationPercent(remainingDonationPercent);
+      setRemainingDonationPercent(remainingDonationPercent);       
+    }
+    else{
+       console.log('No data Found');
+    }
+      
     }, [donations]);
 
       data[0]['value']=parseFloat(donatedItemsInPercent);
       data[1]['value']=parseFloat(remainingDonationPercent);
-    //   console.log(typeof(data[0]['value']));
+    
 
   return (
     <div>
-      <div style={{ width: "100%", height: 300 }}>
+      <div style={{ width: "100%", height: 400 }}>
         <ResponsiveContainer>
           <PieChart>
-            <Pie dataKey="value" data={data} fill="#8884d8" label />
+            <Pie dataKey="value" data={data} fill="#8884d8" label >
+            {data.map((entry, index) => (
+          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+        ))}
+            </Pie>
           </PieChart>
         </ResponsiveContainer>
+      </div>
+      <div className="flex gap-5 justify-center">
+        <p className="bg-[#0cc93f] px-4 text-white font-semibold rounded-lg">Your Donation</p>
+        <p className="bg-[#fe0000] px-4 text-white font-semibold rounded-lg">Remaining Donation</p>
       </div>
     </div>
   );
