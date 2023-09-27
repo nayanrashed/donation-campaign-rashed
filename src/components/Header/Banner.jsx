@@ -2,14 +2,14 @@ import { useContext, useState } from "react";
 import { SearchContext } from "../../Pages/Home/Home";
 
 const Banner = () => {
-//   const [inputData, setInputData] = useState("");
-const [inputData, setInputData] =useContext(SearchContext);
+  //   const [inputData, setInputData] = useState("");
+  const [inputData, setInputData] = useContext(SearchContext);
 
   const handleSearch = (e) => {
     e.preventDefault();
     setInputData(e.target.searchField.value);
   };
-//   console.log(inputData);
+  //   console.log(inputData);
 
   return (
     <div className="h-[70vh] bg-[url('/banner.jpg')] flex flex-col items-center justify-center bg-cover bg-center bg-slate-200 bg-blend-overlay gap-5">

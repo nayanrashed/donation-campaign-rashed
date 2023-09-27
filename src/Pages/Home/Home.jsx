@@ -11,16 +11,14 @@ const Home = () => {
   const [inputData, setInputData] = useState("");
 
   useEffect(() => {
-    const search = allDonations.filter(item=>item.category==inputData)
+    const search = allDonations.filter((item) => item.category == inputData);
     // console.log(search);
-    if(search.length===0){
-      setDonations(allDonations)      
-    }else{setDonations(search)}
-    
-          
-  }, [allDonations,inputData]);
-
-  
+    if (search.length === 0) {
+      setDonations(allDonations);
+    } else {
+      setDonations(search);
+    }
+  }, [allDonations, inputData]);
 
   return (
     <div>
