@@ -18,7 +18,7 @@ const Donations = () => {
   }, []);
 
   return (
-    <div>
+    <div className="px-3">
       {noFound ? (
         <div className="p-10">
           <p className="text-center text-4xl text-lime-600 font-semibold">Please Donate</p>

@@ -13,7 +13,7 @@ const Donation = () => {
         setDonation(findDonation)
     },[id,donations])
     return (
-        <div>
+        <div className='px-3'>
             <DonationCard donation={donation}></DonationCard>
         </div>
     );
